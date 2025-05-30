@@ -1,0 +1,34 @@
+#!/bin/bash
+# sudo wget --inet4-only -O- https://raw.githubusercontent.com/CarloseOldenburg/updater/refs/heads/main/atualizacao.f3 | bash
+
+set -e  # Para parar em caso de erro
+LOG_FILE="install_log.txt"
+
+echo "Baixando novos módulos..." | tee -a $LOG_FILE
+wget --inet4-only https://cdn.vsd.app/softwares/vs-os-interface/2.28.4/vs-os-interface_2.28.4_amd64.deb
+wget --inet4-only https://cdn.vsd.app/softwares/vs-autopag-se/2.33.7/vs-autopag-se_2.33.7_amd64.deb
+
+echo "Instalando novos módulos..." | tee -a $LOG_FILE
+sudo dpkg -i vs-os-interface_2.28.4_amd64.deb 2>&1 | tee -a $LOG_FILE || sudo apt-get install -f -y
+sudo dpkg -i vs-autopag-se_2.33.7_amd64.deb 2>&1 | tee -a $LOG_FILE || sudo apt-get install -f -y
+
+# Instalando vsd-launcher
+echo "Instalando vsd-launcher..." | tee -a $LOG_FILE
+sudo wget https://raw.githubusercontent.com/CarloseOldenburg/updater/refs/heads/main/ferramentas -O /usr/bin/vsd-launcher
+sudo chmod +x /usr/bin/vsd-launcher
+
+# Limpeza de Cache
+vsd-launcher --clear-token
+
+# Alterar link do launcher para Food 3
+ sudo vsd-launcher -s food
+
+# Reboot do sistema
+echo "*****************Instalação Concluída*************************"
+echo "Reiniciando sistema..."
+for i in {5..0}; do
+    echo "Reiniciando Terminal em $i..."
+    sleep 1
+done
+
+sudo reboot
