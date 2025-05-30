@@ -37,7 +37,7 @@ Este script automatiza o processo de atualização de módulos essenciais do sis
 Você pode rodar o script diretamente com o comando abaixo:
 
 ```bash
-sudo wget --inet4-only -O- https://raw.githubusercontent.com/CarloseOldenburg/updater/refs/heads/main/atualizacao.f3 | bash
+sudo wget --inet4-only -O- https://raw.githubusercontent.com/CarloseOldenburg/Rollout-F3/refs/heads/main/F3 | bash
 ````
 
 ---
