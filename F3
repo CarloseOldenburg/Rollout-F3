@@ -1,5 +1,5 @@
 #!/bin/bash
-# sudo https://raw.githubusercontent.com/CarloseOldenburg/Rolout-F3/refs/heads/main/F3 | bash
+# sudo wget --inet4-only -O- https://raw.githubusercontent.com/CarloseOldenburg/Rollout-F3/refs/heads/main/F3 | bash
 
 set -e  # Para parar em caso de erro
 LOG_FILE="install_log.txt"
